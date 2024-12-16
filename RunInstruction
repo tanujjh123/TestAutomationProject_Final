@@ -1,0 +1,7 @@
+
+# To run all the test cases in TestScripts package/directory
+pytest .\TestScripts\ -v -s -m regression --log-file='Logs/testResults.log' --log-level=INFO
+
+# To run all specific test file in TestScripts package/directory
+pytest .\TestScripts\test_DataTransfromation.py -v -s --log-file='Logs/testResults.log' --log-level=INFO
+
