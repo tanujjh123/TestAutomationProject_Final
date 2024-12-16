@@ -30,8 +30,19 @@ def file_to_db_verify(file_path,file_type,table_name,db_engine):
         df_expected = pd.read_json(file_path)
     else:
         raise ValueError(f"Unsupported file type passed {file_type}")
-
+    logger.info(f"expected data is :{df_expected}")
     query = f"select * from {table_name}"
     df_actual = pd.read_sql(query, db_engine)
-    assert df_actual.equals(df_expected),f"Data extraction failed to load in {table_name}"
+    logger.info(f"actual data is :{df_actual}")
+    #implement the logic to write the differential data between source and target
+    assert df_actual.equals(df_expected),f"Data comparision failed to load in {table_name}"
 
+
+# verify data between two databases or 2 tables
+def db_to_db_verify(query1,db_engine1,query2,db_engine2):
+    df_expected  = pd.read_sql(query1,db_engine1)
+    logger.info(f"expected data is :{df_expected}")
+    df_actual = pd.read_sql(query2, db_engine2)
+    logger.info(f"actual data is :{df_actual}")
+    # implement the logic to write the differential data between source and target
+    assert df_actual.equals(df_expected), f"Data comparision failed to load"
