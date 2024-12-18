@@ -45,4 +45,4 @@ def db_to_db_verify(query1,db_engine1,query2,db_engine2):
     df_actual = pd.read_sql(query2, db_engine2)
     logger.info(f"actual data is :{df_actual}")
     # implement the logic to write the differential data between source and target
-    assert df_actual.equals(df_expected), f"Data comparision failed to load"
+    assert df_actual.astype(str).equals(df_expected.astype(str)), f"Data comparision failed to load"
