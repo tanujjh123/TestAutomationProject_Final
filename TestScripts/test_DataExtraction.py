@@ -45,7 +45,7 @@ def Sales_Data_From_Linux_Server():
         print(f"An error occurred: {e}")
 
 
-
+@pytest.mark.Linux_souces
 def test_extraction_from_sales_data_CSV_to_sales_staging_MySQL(Sales_Data_From_Linux_Server):
     logger.info(" Data extraction from sales_data.csv to sales_staging has started .......")
     try:
