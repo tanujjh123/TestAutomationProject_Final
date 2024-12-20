@@ -50,3 +50,30 @@ def test_monthly_sales_summary_table_load():
     except Exception as e:
         logger.error(f"Error occured during data transformation: {e}")
         pytest.fail(f"Test failed due to an error {e}")
+
+@pytest.mark.smoke
+@pytest.mark.regression
+def test_inventory_fact_load():
+    logger.info("test_inventory_fact_load test has started .......")
+    try:
+        query_expected = """select * from  staging_inventory order by product_id,store_id;"""
+        query_actual = """select * from  fact_inventory order by product_id,store_id;"""
+        db_to_db_verify(query_expected,mysql_engine,query_actual,mysql_engine)
+        logger.info("test_inventory_fact_load test has completed .......")
+    except Exception as e:
+        logger.error(f"Error occured during data transformation: {e}")
+        pytest.fail(f"Test failed due to an error {e}")
+
+
+@pytest.mark.smoke
+@pytest.mark.regression
+def test__inventory_levels_by_store_fact_load():
+    logger.info("test__inventory_levels_by_store_fact_load test has started .......")
+    try:
+        query_expected = """select * from  aggregated_inventory_levels order by store_id;"""
+        query_actual = """select store_id,cast(total_inventory as Double) as total_inventory from inventory_levels_by_store;"""
+        db_to_db_verify(query_expected,mysql_engine,query_actual,mysql_engine)
+        logger.info("test__inventory_levels_by_store_fact_load test has completed .......")
+    except Exception as e:
+        logger.error(f"Error occured during data transformation: {e}")
+        pytest.fail(f"Test failed due to an error {e}")

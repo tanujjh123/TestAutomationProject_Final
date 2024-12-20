@@ -1,6 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import cx_Oracle
+import paramiko
 
 from CommonUtilities.utilities import file_to_db_verify, db_to_db_verify
 from Config.config import *
@@ -20,14 +21,35 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-@pytest.mark.smoke
-@pytest.mark.regression
-@pytest.mark.sanity
-@pytest.mark.xfail
-def test_extraction_from_sales_data_CSV_to_sales_staging_MySQL():
+
+@pytest.fixture()
+def Sales_Data_From_Linux_Server():
+    try:
+        # Establish SSH client connection
+        ssh_client = paramiko.SSHClient()
+        # Automatically add the server's SSH key (if not already known)
+        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        # Connect to the remote server
+        ssh_client.connect(hostname, username=username, password=password)
+        # Use SFTP to download the file from the remote server
+        sftp = ssh_client.open_sftp()
+        # Download the remote file to the local file path
+        sftp.get(remote_file_path, local_file_path)
+        print(f"File downloaded successfully from {remote_file_path} to {local_file_path}")
+        # Close the SFTP session
+        yield
+        sftp.close()
+        # Close the SSH client connection
+        ssh_client.close()
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+
+def test_extraction_from_sales_data_CSV_to_sales_staging_MySQL(Sales_Data_From_Linux_Server):
     logger.info(" Data extraction from sales_data.csv to sales_staging has started .......")
     try:
-        file_to_db_verify('Testdata/sales_data.csv1','csv','staging_sales',mysql_engine)
+        file_to_db_verify('Testdata/sales_data_Linux.csv','csv','staging_sales',mysql_engine)
         logger.info(" Data extraction from sales_data.csv to sales_staging has completed .......")
     except Exception as e:
         logger.error(f"Error occured during data extraction: {e}")
