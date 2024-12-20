@@ -1,3 +1,4 @@
+import os.path
 import pandas as pd
 from sqlalchemy import create_engine
 import cx_Oracle
@@ -46,3 +47,18 @@ def db_to_db_verify(query1,db_engine1,query2,db_engine2):
     logger.info(f"actual data is :{df_actual}")
     # implement the logic to write the differential data between source and target
     assert df_actual.astype(str).equals(df_expected.astype(str)), f"Data comparision failed to load"
+
+# Function to check if a given file exists in the given location
+def check_file_exists(file_path):
+    if(os.path.isfile(file_path) == True):
+        return True
+    else:
+        return False
+
+# Function to check if a given file is not a zero byte file ( empty file )
+def check_file_size(file_path):
+    if(os.path.getsize(file_path) != 0):
+        return True
+    else:
+        return False
+
