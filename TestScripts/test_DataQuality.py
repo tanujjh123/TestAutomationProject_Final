@@ -29,7 +29,7 @@ mysql_engine = create_engine(f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MY
 def test_DQ_Sales_Data_File_Availability():
     try:
         logger.info("File availability check for Sales_data.csv has been initiated.. ")
-        assert check_file_exists("TestData/sales_data.csv"),"Sales_data file is not available"
+        assert check_file_exists("../TestData/sales_data.csv"),"Sales_data file is not available"
         logger.info("File availability check for Sales_data.csv has been completed.. ")
     except Exception as e:
         logger.error(f"Error during file availability check{e}")
@@ -41,7 +41,7 @@ def test_DQ_Sales_Data_File_Availability():
 def test_DQ_Sales_Data_File_SizeCheck():
     try:
         logger.info("File size check for Sales_data.csv has been initiated.. ")
-        assert check_file_size("TestData/sales_data.csv"),"Sales_data file is zero byte file"
+        assert check_file_size("../TestData/sales_data.csv"),"Sales_data file is zero byte file"
         logger.info("File size check for Sales_data.csv has been completed.. ")
     except Exception as e:
         logger.error(f"Error during file size check{e}")

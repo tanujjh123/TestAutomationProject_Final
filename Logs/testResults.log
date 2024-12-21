@@ -1,4 +1,0 @@
-INFO     TestScripts.test_DataQuality:test_DataQuality.py:31 File availability check for Sales_data.csv has been initiated.. 
-INFO     TestScripts.test_DataQuality:test_DataQuality.py:33 File availability check for Sales_data.csv has been completed.. 
-INFO     TestScripts.test_DataQuality:test_DataQuality.py:43 File size check for Sales_data.csv has been initiated.. 
-INFO     TestScripts.test_DataQuality:test_DataQuality.py:45 File size check for Sales_data.csv has been completed.. 

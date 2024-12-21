@@ -2,9 +2,9 @@
 
 # MySQL Database Configuration
 MYSQL_HOST = 'localhost'
-MYSQL_PORT = '3308'
+MYSQL_PORT = '3306'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'Admin%40143'
+MYSQL_PASSWORD = 'Omnitech%407329'
 MYSQL_DATABASE = 'retaildwh'
 
 # Oracle Database Configuration
