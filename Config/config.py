@@ -12,7 +12,7 @@ ORACLE_USER = 'system'
 ORACLE_PASSWORD = 'admin'
 ORACLE_HOST = 'localhost'
 ORACLE_PORT = '1521'
-ORACLE_SERVICE = 'xe'
+ORACLE_SERVICE ='xe'
 
 # Linux Setup SSH connection details
 hostname = '192.168.0.104'  # Remote server's hostname or IP address
