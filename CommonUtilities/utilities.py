@@ -61,4 +61,3 @@ def check_file_size(file_path):
         return True
     else:
         return False
-

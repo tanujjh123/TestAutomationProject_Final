@@ -11,18 +11,28 @@ import os
 # Configure the logging
 from CommonUtilities.utilities import file_to_db_verify, db_to_db_verify, check_file_exists, check_file_size
 
-logging.basicConfig(
-    filename='Logs/etlprocess.log',  # Name of the log file
-    filemode='a',  # 'a' to append, 'w' to overwrite
-    format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
-    level=logging.INFO  # Set the logging level
-)
+import logging
+import os
+
+# Ensure Logs directory exists
+if not os.path.exists('Logs'):
+    os.makedirs('Logs')
+
+# Logging mechanism
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Check if handlers exist to prevent duplicate logging
+if not logger.handlers:
+    handler = logging.FileHandler('Logs/etlProcess.log')
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 # create mysql database commection
 from Config.config import *
 
-#mysql_engine = create_engine('mysql+pymysql://root:Admin%40143@localhost:3308/retaildwh')
+
 mysql_engine = create_engine(f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}')
 
 @pytest.mark.DQ_Check

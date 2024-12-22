@@ -15,14 +15,23 @@ import logging
 # Create mysql engine
 mysql_engine = create_engine(f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}')
 
+import logging
+import os
+
+# Ensure Logs directory exists
+if not os.path.exists('Logs'):
+    os.makedirs('Logs')
+
 # Logging mechanism
-logging.basicConfig(
-    filename='Logs/etlprocess.log',  # Name of the log file
-    filemode='a',  # 'a' to append, 'w' to overwrite
-    format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
-    level=logging.INFO  # Set the logging level
-)
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Check if handlers exist to prevent duplicate logging
+if not logger.handlers:
+    handler = logging.FileHandler('Logs/etlProcess.log')
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 @pytest.mark.smoke
 @pytest.mark.regression
