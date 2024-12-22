@@ -24,7 +24,7 @@ logger.setLevel(logging.INFO)
 
 # Check if handlers exist to prevent duplicate logging
 if not logger.handlers:
-    handler = logging.FileHandler('Logs/etlProcess.log')
+    handler = logging.FileHandler('Logs/TestResults.log')
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
