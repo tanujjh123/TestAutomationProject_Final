@@ -1,8 +1,6 @@
 # Assignment:
 #  1. complete the remaining 2 load test cases
 
-
-
 import pandas as pd
 from sqlalchemy import create_engine
 import cx_Oracle
