@@ -65,7 +65,7 @@ def test_inventory_fact_load():
     try:
         query_expected = """select * from  staging_inventory order by product_id,store_id;"""
         query_actual = """select * from  fact_inventory order by product_id,store_id;"""
-        db_to_db_verify(query_expected,mysql_engine,query_actual,mysql_engine)
+        db_to_db_verify(query_expected, mysql_engine, query_actual, mysql_engine)
         logger.info("test_inventory_fact_load test has completed .......")
     except Exception as e:
         logger.error(f"Error occured during data transformation: {e}")

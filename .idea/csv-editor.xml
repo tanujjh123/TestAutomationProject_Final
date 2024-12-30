@@ -31,6 +31,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\TestScripts\Logs\inventory_data_differences.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\TestScripts\Logs\product_data_differences.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\TestScripts\Logs\supplier_data_differences.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
