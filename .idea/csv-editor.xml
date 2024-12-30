@@ -31,6 +31,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\TestScripts\Logs\inventory_Fact_differences.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\TestScripts\Logs\inventory_data_differences.csv">
           <value>
             <Attribute>
